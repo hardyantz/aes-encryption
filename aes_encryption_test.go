@@ -96,3 +96,13 @@ func BenchmarkFileDecrypt(b *testing.B) {
 		_ = DecryptFile(cr, key, file)
 	}
 }
+
+func BenchmarkImageDecrypt(b *testing.B) {
+	b.ResetTimer()
+	for i := 0; i < b.N; i++ {
+		file := "/tmp/output_file.jpg"
+		os.Remove(file)
+		cr, _ := EncryptFile("sample-image.jpg", key)
+		_ = DecryptFile(cr, key, file)
+	}
+}
